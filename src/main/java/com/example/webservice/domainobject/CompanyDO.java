@@ -31,14 +31,14 @@ public class CompanyDO {
     private String email;
 
     @Column
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     // TODO: 15/06/2018 Add Beneficial Owner
 
     private CompanyDO() {
     }
 
-    public CompanyDO(@NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, Integer phoneNumber) {
+    public CompanyDO(@NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, String phoneNumber) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -95,11 +95,11 @@ public class CompanyDO {
         this.email = email;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

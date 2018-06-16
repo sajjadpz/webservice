@@ -27,7 +27,6 @@ public class CompanyController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CompanyDTO createCompany(@Valid @RequestBody CompanyDTO companyDTO) {
-
         CompanyDO companyDO = CompanyBuilder.buildCompanyDO(companyDTO);
         return CompanyBuilder.buildCompanyDTO(companyService.create(companyDO));
     }
@@ -42,6 +41,7 @@ public class CompanyController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void updateCompany(@Valid @PathVariable long id, @RequestBody CompanyDTO companyDTO) {
         companyService.updateCompany(id, CompanyBuilder.buildCompanyDO(companyDTO));
     }
@@ -49,5 +49,11 @@ public class CompanyController {
     @GetMapping("/{id}")
     public CompanyDTO getCompanyDetails(@Valid @PathVariable long id) {
         return CompanyBuilder.buildCompanyDTO(companyService.findCompanyDetails(id));
+    }
+
+    @PutMapping("/{id}/addBO")
+    @ResponseStatus(HttpStatus.OK)
+    public void addBeneficialOwner(@Valid @PathVariable long id, @RequestBody CompanyDTO companyDTO) {
+        companyService.addBeneficialOwner(id, CompanyBuilder.buildCompanyDO(companyDTO));
     }
 }

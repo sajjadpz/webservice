@@ -13,4 +13,6 @@ public interface CompanyService {
 
     CompanyDO findCompanyDetails(long id);
 
+    void addBeneficialOwner(long id, CompanyDO companyDO);
+
 }

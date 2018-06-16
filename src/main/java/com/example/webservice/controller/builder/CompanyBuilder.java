@@ -36,13 +36,15 @@ public class CompanyBuilder {
 
     private static Set<BeneficialOwnerDTO> makeBeneficialOwnerDTO(Set<BeneficialOwnerDO> beneficialOwnerDO) {
         Set<BeneficialOwnerDTO> beneficialOwnerDTOS = new HashSet<>();
-        beneficialOwnerDO.stream().forEach(bo -> beneficialOwnerDTOS.add(new BeneficialOwnerDTO(bo.getId(), bo.getName())));
+        if (null != beneficialOwnerDO)
+            beneficialOwnerDO.stream().forEach(bo -> beneficialOwnerDTOS.add(new BeneficialOwnerDTO(bo.getId(), bo.getName())));
         return beneficialOwnerDTOS;
     }
 
     private static Set<BeneficialOwnerDO> makeBeneficialOwnerDO(Set<BeneficialOwnerDTO> beneficialOwnerDTO) {
         Set<BeneficialOwnerDO> beneficialOwnerDOs = new HashSet<>();
-        beneficialOwnerDTO.stream().forEach(bo -> beneficialOwnerDOs.add(new BeneficialOwnerDO(bo.getName())));
+        if (null != beneficialOwnerDTO)
+            beneficialOwnerDTO.stream().forEach(bo -> beneficialOwnerDOs.add(new BeneficialOwnerDO(bo.getName())));
         return beneficialOwnerDOs;
     }
 }

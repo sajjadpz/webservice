@@ -50,4 +50,14 @@ public class BasicCompanyService implements CompanyService {
         return companyRespository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found with id: " + id));
     }
+
+    @Override
+    @Transactional
+    public void addBeneficialOwner(long id, CompanyDO updatedCompany) {
+        CompanyDO companyDO = companyRespository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found with id: " + id));
+        if (companyDO.getBeneficialOwnerDOS() != null)
+            companyDO.getBeneficialOwnerDOS().addAll(updatedCompany.getBeneficialOwnerDOS());
+        else companyDO.setBeneficialOwnerDOS(updatedCompany.getBeneficialOwnerDOS());
+    }
 }

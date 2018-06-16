@@ -3,6 +3,7 @@ package com.example.webservice.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 public class CompanyDTO {
 
@@ -25,10 +26,12 @@ public class CompanyDTO {
 
     private String phoneNumber;
 
+    private Set<BeneficialOwnerDTO> beneficialOwners;
+
     public CompanyDTO() {
     }
 
-    public CompanyDTO(Long id, @NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, String phoneNumber) {
+    public CompanyDTO(Long id, @NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, String phoneNumber, Set<BeneficialOwnerDTO> beneficialOwners) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -36,6 +39,7 @@ public class CompanyDTO {
         this.country = country;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.beneficialOwners = beneficialOwners;
     }
 
     public Long getId() {
@@ -64,5 +68,9 @@ public class CompanyDTO {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public Set<BeneficialOwnerDTO> getBeneficialOwners() {
+        return beneficialOwners;
     }
 }

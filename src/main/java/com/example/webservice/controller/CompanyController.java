@@ -32,6 +32,7 @@ public class CompanyController {
         return CompanyBuilder.buildCompanyDTO(companyService.create(companyDO));
     }
 
+
     @GetMapping
     public List<CompanyDTO> getCompanies() {
         return StreamSupport

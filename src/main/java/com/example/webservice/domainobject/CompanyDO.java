@@ -2,6 +2,8 @@ package com.example.webservice.domainobject;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "company")
@@ -9,6 +11,7 @@ public class CompanyDO {
 
     @Id
     @GeneratedValue
+    @Column(name = "company_id")
     private Long id;
 
     @Column(nullable = false)
@@ -33,18 +36,27 @@ public class CompanyDO {
     @Column
     private String phoneNumber;
 
-    // TODO: 15/06/2018 Add Beneficial Owner
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "company_owners",
+            joinColumns = {@JoinColumn(name = "company_id", referencedColumnName = "company_id")},
+            inverseJoinColumns = {@JoinColumn(name = "owner_id", referencedColumnName = "owner_id")})
+    private Set<BeneficialOwnerDO> beneficialOwnerDOS = new HashSet<>();
 
     private CompanyDO() {
     }
 
-    public CompanyDO(@NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, String phoneNumber) {
+    public CompanyDO(@NotNull(message = "Company name cannot be null") String name, @NotNull(message = "Company address cannot be null") String address, @NotNull(message = "City cannot be null") String city, @NotNull(message = "Country cannot be null") String country, String email, String phoneNumber, Set<BeneficialOwnerDO> beneficialOwnerDOS) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.country = country;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.beneficialOwnerDOS = beneficialOwnerDOS;
     }
 
     public Long getId() {
@@ -101,5 +113,13 @@ public class CompanyDO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Set<BeneficialOwnerDO> getBeneficialOwnerDOS() {
+        return beneficialOwnerDOS;
+    }
+
+    public void setBeneficialOwnerDOS(Set<BeneficialOwnerDO> beneficialOwnerDOS) {
+        this.beneficialOwnerDOS = beneficialOwnerDOS;
     }
 }

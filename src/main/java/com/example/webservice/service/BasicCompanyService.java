@@ -44,4 +44,10 @@ public class BasicCompanyService implements CompanyService {
         companyDO.setBeneficialOwnerDOS(updatedCompany.getBeneficialOwnerDOS());
 
     }
+
+    @Override
+    public CompanyDO findCompanyDetails(long id) {
+        return companyRespository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found with id: " + id));
+    }
 }

@@ -41,8 +41,13 @@ public class CompanyController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateCompany(@Valid @PathVariable long id, @RequestBody CompanyDTO companyDTO) {
         companyService.updateCompany(id, CompanyBuilder.buildCompanyDO(companyDTO));
+    }
+
+    @GetMapping("/{id}")
+    public CompanyDTO getCompanyDetails(@Valid @PathVariable long id) {
+        return CompanyBuilder.buildCompanyDTO(companyService.findCompanyDetails(id));
     }
 }

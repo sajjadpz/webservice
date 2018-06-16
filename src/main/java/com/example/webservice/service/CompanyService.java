@@ -11,4 +11,6 @@ public interface CompanyService {
 
     void updateCompany(long id, CompanyDO companyDO);
 
+    CompanyDO findCompanyDetails(long id);
+
 }

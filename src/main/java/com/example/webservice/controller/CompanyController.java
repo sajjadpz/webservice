@@ -40,4 +40,9 @@ public class CompanyController {
                 .map(CompanyBuilder::buildCompanyDTO)
                 .collect(Collectors.toList());
     }
+
+    @PutMapping("{id}")
+    public void updateCompany(@Valid @PathVariable long id, @RequestBody CompanyDTO companyDTO) {
+        companyService.updateCompany(id, CompanyBuilder.buildCompanyDO(companyDTO));
+    }
 }

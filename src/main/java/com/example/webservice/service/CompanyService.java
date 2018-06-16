@@ -9,4 +9,6 @@ public interface CompanyService {
 
     Iterable<CompanyDO> findAllCompanies();
 
+    void updateCompany(long id, CompanyDO companyDO);
+
 }

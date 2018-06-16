@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class CompanyDTO {
 
-    @JsonIgnore
     private Long id;
 
     @NotNull(message = "Company name cannot be null")

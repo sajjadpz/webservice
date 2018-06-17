@@ -1,7 +1,5 @@
 package com.example.webservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 

@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * Provides endpoints to perform company related operations
+ */
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {

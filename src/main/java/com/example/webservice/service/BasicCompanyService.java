@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 
-
+/**
+ * Provides business logic for company related operations
+ */
 @Service
 public class BasicCompanyService implements CompanyService {
 
@@ -19,16 +21,33 @@ public class BasicCompanyService implements CompanyService {
         this.companyRespository = companyRespository;
     }
 
+    /**
+     * Creates new company
+     *
+     * @param companyDO
+     * @return
+     */
     @Override
     public CompanyDO create(CompanyDO companyDO) {
         return companyRespository.save(companyDO);
     }
 
+    /**
+     * Finds list of all created companies
+     *
+     * @return List of companies
+     */
     @Override
     public Iterable<CompanyDO> findAllCompanies() {
         return companyRespository.findAll();
     }
 
+    /**
+     * Updates company information
+     *
+     * @param id
+     * @param updatedCompany
+     */
     @Override
     @Transactional
     public void updateCompany(long id, CompanyDO updatedCompany) {
@@ -45,12 +64,24 @@ public class BasicCompanyService implements CompanyService {
 
     }
 
+    /**
+     * Find details of a specific company
+     *
+     * @param id
+     * @return company details
+     */
     @Override
     public CompanyDO findCompanyDetails(long id) {
         return companyRespository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found with id: " + id));
     }
 
+    /**
+     * Adds beneficial owner to existing company
+     *
+     * @param id
+     * @param updatedCompany
+     */
     @Override
     @Transactional
     public void addBeneficialOwner(long id, CompanyDO updatedCompany) {

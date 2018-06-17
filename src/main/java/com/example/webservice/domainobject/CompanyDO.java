@@ -33,7 +33,7 @@ public class CompanyDO {
     @Column
     private String email;
 
-    @Column
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.LAZY,

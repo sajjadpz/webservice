@@ -31,11 +31,11 @@ https://secret-eyrie-11493.herokuapp.com/
 ### API Resources
 
 
-- [GET /companies](#get_companies)
-- [GET /companies/{id}](#get_companiesid)
-- [POST /companies](#post_companies)
-- [PUT /companies/{id}](#put_companiesid)
-- [PUT /companies/{id}/addBO](#put_addBeneficialOwner)
+- [GET /companies](#get-companies)
+- [GET /companies/[id]](#get-companiesid)
+- [POST /companies](#post-companies)
+- [PUT /companies/[id]](#put-companiesid)
+- [PUT /companies/[id]/addBO](#put-companiesidaddBO)
 
 ### GET /companies
 Example `curl`
@@ -63,7 +63,7 @@ Response:
 ]
 ```
 
-### GET /companies/{id}
+### GET /companies/[id]
 Example `curl`
 ```
 curl -X GET \
@@ -87,12 +87,12 @@ curl -X POST \
         "beneficialOwners": [{"name":"Russel"},{"name":"James"}]
 }'
 ```
-### PUT /companies/{id}
+### PUT /companies/[id]
 It the same as `POST` request with an exception of passing the `id` as well.
 
 Note: Since in current implantation certain fields are mandatory (requirement in task) to be provided so in order to make a `put` request all those fields will have to be provided as well otherwise it will fail due to `validation` error.
 
-### PUT /companies/{id}/addBO
+### PUT /companies/[id]/addBO
 Example `curl`
 ```
 curl -X PUT \
@@ -103,3 +103,21 @@ curl -X PUT \
         "beneficialOwners": [{"name":"Russel"},{"name":"James"}]
 }'
 ```
+
+# Answers
+## Authentication
+Spring security along with JWT would be a safe choice to secure API endpoints because of its stateless exchange of tokens.
+
+## Redundancy
+
+### Considerations
+
+- Business needs
+- Recovery Time
+- Regional deployments
+
+### Recommendation
+Service can be made redundant by running multiple instance and managing them behind a load-balancer.
+Docker can be a good choice to run multiple instances of service, depening upon the business need replication for databases can also be performed.
+
+
